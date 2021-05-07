@@ -40,8 +40,6 @@ function Pomodoro() {
 
 
 function timer() {
-  const {typeOfSession, timeInSession} = session;
-  const timeRemaining = session[typeOfSession] * 60 - timeInSession;
   setSession((session) => ({
     ...session,
     timeInSession: session.timeInSession + 1
@@ -61,9 +59,6 @@ function nextSession() {
 
 
   function playPauseHandler() {
-    if (!session.pause) {
-      const { typeOfSession } = session;
-    }
     setSession((session) => ({
       ...session,
       pause: !session.pause,
@@ -83,8 +78,6 @@ function nextSession() {
   }
   /**
    * Custom hook that invokes the callback function every second
-   *
-   * NOTE: You will not need to make changes to the callback function
    */
   useInterval(() => {
     if (endSession()) nextSession();
@@ -118,16 +111,7 @@ function nextSession() {
       pause={session.pause}
       sessionTimes={[session.focus, session.break]}
       timeInSession={session.timeInSession}
-      />
-
-
-      
-
-
-      
-        {/* TODO: This area should show only when there is an active focus or break - i.e. the session is running or is paused */}
-        
-        
+      />        
 
 
     </div>
